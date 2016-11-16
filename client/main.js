@@ -110,22 +110,6 @@ var AppView = Backbone.View.extend({
 		});
 	},
 
-	setAccidentListeners: function(){
-		map.on('click', function (e) {
-			var features = map.queryRenderedFeatures(e.point, { layers: ['traffic_accidents'] });
-
-			if (!features.length) {
-				return;
-			}
-
-			var feature = features[0];
-			var popup = new mapboxgl.Popup()
-				.setLngLat(map.unproject(e.point))
-				.setHTML('<b>Accident:</b><br>'+ feature.properties.OFFENSE_TY)
-				.addTo(map);
-		});
-	},
-
 	setParcelListeners: function() {
 		map.on('click', function (e) {
 			var features = map.queryRenderedFeatures(e.point, { layers: ['Parcels'] });
